@@ -1,0 +1,38 @@
+package ${package}.${className}.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.util.Date;
+import lombok.Data;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "${tableName}")
+public class ${className}{
+
+#foreach ($column in $columns)
+	/**
+	 * $column.comments
+	 */
+	#if($column.columnName == $pk.columnName)
+@Id
+	#end
+private $column.attrType $column.attrname;
+#end
+
+}

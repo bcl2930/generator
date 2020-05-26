@@ -1,0 +1,50 @@
+package ${package}.service;
+
+import com.github.pagehelper.PageInfo;
+import ${package}.dto.${className}DTO;
+import ${package}.dto.${className}QueryDTO;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+public interface ${className}Service {
+
+    /**
+     * 查询 ${comments} 详情.
+     *
+     * @param ${pk.attrname} 主键
+     * @return 详情
+     */
+        ${className}DTO get${className}(${pk.attrType} ${pk.attrname});
+
+
+    /**
+     * 查询 ${comments} 列表.
+     *
+     * @param ${classname}QueryDTO 查询参数
+     * @return 分页/列表
+     */
+    PageInfo<${className}DTO> queryList(${className}QueryDTO ${classname}QueryDTO);
+
+    /**
+     * 新增 ${comments} 记录.
+     *
+     * @param ${classname}DTO 新增数据
+     * @return 成功返回数据/失败返回异常
+     */
+        ${className}DTO add${className}(${className}DTO ${classname}DTO);
+
+    /**
+     * 修改 ${comments} 记录.
+     *
+     * @param id 主键
+     * @param ${classname}DTO 修改数据
+     * @return 成功返回数据/失败返回异常
+     */
+        ${className}DTO update${className}(Integer id, ${className}DTO ${classname}DTO);
+}

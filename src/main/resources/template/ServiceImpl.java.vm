@@ -1,0 +1,100 @@
+package ${package}.service.impl;
+
+import com.github.pagehelper.PageInfo;
+import com.siglife.smartart.common.aop.annotation.Pagination;
+import com.siglife.smartart.common.exception.DataNotExistsException;
+import com.siglife.smartart.common.exception.SystemErrorException;
+import ${package}.dao.${className}Mapper;
+import ${package}.dto.${className}DTO;
+import ${package}.dto.${className}QueryDTO;
+import ${package}.entity.${className}Entity;
+import ${package}.service.${className}Service;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Slf4j
+@Service
+public class ${className}ServiceImpl implements ${className}Service {
+    @Autowired
+    private ${className}Mapper ${classname}Mapper;
+    @Autowired
+    private ModelMapper modelMapper;
+
+    /**
+     * 查询 ${comments} 详情.
+     *
+     * @param ${pk.attrname} 主键
+     * @return 详情
+     */
+    @Override
+    public ${className}DTO get${className}(${pk.attrType} ${pk.attrname}) {
+            ${className}Entity ${classname} = ${classname}Mapper.selectByPrimaryKey(${pk.attrname});
+        if (${classname} == null) {
+            throw new DataNotExistsException();
+        }
+        return modelMapper.map(${classname}, ${className}DTO.class);
+    }
+
+
+    /**
+     * 查询 ${comments} 列表.
+     *
+     * @param ${classname}QueryDTO 查询参数
+     * @return 分页/列表
+     */
+    @Override
+    @Pagination
+    public PageInfo<${className}DTO> queryList(${className}QueryDTO ${classname}QueryDTO) {
+        // selectByQueryParams 需要自己写实现
+        List<${className}DTO> result = ${classname}Mapper.selectByQueryParams(${classname}QueryDTO).stream()
+                .map(${classname} -> modelMapper.map(${classname}, ${className}DTO.class))
+                .collect(Collectors.toList());
+
+        return new PageInfo<>(result);
+    }
+
+    /**
+     * 新增 ${comments} 记录.
+     *
+     * @param ${classname}DTO 新增数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @Override
+    public ${className}DTO add${className}(${className}DTO ${classname}DTO) {
+            ${className}Entity ${classname} = modelMapper.map(${classname}DTO, ${className}Entity.class);
+        if (${classname}Mapper.insert(${classname}) != 1) {
+            throw new SystemErrorException();
+        }
+        return modelMapper.map(${classname}, ${className}DTO.class);
+    }
+
+    /**
+     * 修改 ${comments} 记录.
+     *
+     * @param id 主键
+     * @param ${classname}DTO 修改数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @Override
+    public ${className}DTO update${className}(Integer id, ${className}DTO ${classname}DTO) {
+            ${className}Entity ${classname} = modelMapper.map(${classname}DTO, ${className}Entity.class);
+        ${classname}.setId(id);
+        if (${classname}Mapper.updateByPrimaryKey(${classname}) != 1) {
+            throw new SystemErrorException();
+        }
+        return modelMapper.map(${classname}, ${className}DTO.class);
+    }
+}

@@ -1,0 +1,31 @@
+package ${package}.dto;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${className}QueryDTO extends Page {
+    #foreach ($column in $columns)
+        #if($column.attrname.equals('id'))
+        #else
+
+    private $column.attrType $column.attrname;
+
+        #end
+    #end
+}

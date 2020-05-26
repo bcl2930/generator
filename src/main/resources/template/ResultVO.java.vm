@@ -1,0 +1,30 @@
+package ${package}.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${className}ResultVO {
+    #foreach ($column in $columns)
+        #if($column.attrname.equals('id') ||$column.attrname.equals('create_time') || $column.attrname.equals(
+            'createuserid') ||$column.attrname.equals('update_time') ||$column.attrname.equals('updateuserid'))
+        #else
+    private $column.attrType $column.attrname;
+
+        #end
+    #end
+}

@@ -1,0 +1,77 @@
+package ${package}.controller;
+
+import com.github.pagehelper.PageInfo;
+import com.siglife.smartart.common.api.Response;
+import ${package}.client.${className}Client;
+import ${package}.dto.${className}DTO;
+import ${package}.dto.${className}QueryDTO;
+import ${package}.service.${className}Service;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Slf4j
+@RestController
+@RequestMapping("/api/v3/${classname}")
+public class ${className}Controller implements ${className}Client {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 根据ID查询${comments}详情.
+     *
+     * @param id 主键
+     * @return 详情
+     */
+    @Override
+    @ApiOperation("获取${comments}详情")
+    public Response<${className}DTO> get(Integer id) {
+        return Response.success(${classname}Service.get${className}(id));
+    }
+
+    /**
+     * 根据条件查询列表，带分页功能.
+     *
+     * @param ${classname}QueryDTO 查询参数
+     * @return 分页/列表
+     */
+    @Override
+    @ApiOperation("获取${comments}列表")
+    public Response<PageInfo<${className}DTO>> getList(${className}QueryDTO ${classname}QueryDTO) {
+        return Response.success(${classname}Service.queryList(${classname}QueryDTO));
+    }
+
+    /**
+     * 新增${comments}.
+     *
+     * @param ${classname}DTO 新增数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @Override
+    @ApiOperation("新增${comments}")
+    public Response<${className}DTO> add(${className}DTO ${classname}DTO) {
+        return Response.success(${classname}Service.add${className}(${classname}DTO));
+    }
+
+    /**
+     * 修改${comments}.
+     *
+     * @param ${classname}DTO 修改数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @Override
+    @ApiOperation("修改${comments}")
+    public Response<${className}DTO> update(Integer id, ${className}DTO ${classname}DTO) {
+        return Response.success(${classname}Service.update${className}(id, ${classname}DTO));
+    }
+}

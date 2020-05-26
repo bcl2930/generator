@@ -1,0 +1,20 @@
+package ${package}.dao;
+
+import ${package}.dto.${className}QueryDTO;
+import ${package}.domian.${className};
+import ${package}.utils.MyMapper;
+import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Mapper
+public interface ${className}Mapper extends MyMapper<${className}> {
+    List<${className}> selectByQueryParams(${className}QueryDTO queryDTO);
+}

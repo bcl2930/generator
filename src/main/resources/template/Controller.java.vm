@@ -1,0 +1,72 @@
+package ${package}.controller;
+
+import com.github.pagehelper.PageInfo;
+import com.dalan.doblue.common.ResultInfo;
+import ${package}.dto.${classname}.${className}DTO;
+import ${package}.dto.${classname}.${className}QueryDTO;
+import ${package}.${classname}.service.${className}Service;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Copyright (c) 2018-present, Sinovatio Corporation.
+ * All rights reserved.
+ * <p/>Created by ${author} on ${datetime}.
+ *
+ * @author ${author}
+ * @since ${datetime}
+ */
+@Slf4j
+@RestController
+@RequestMapping("/api/v3/${classname}")
+public class ${className}Controller{
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 根据ID查询${comments}详情.
+     *
+     * @param id 主键
+     * @return 详情
+     */
+    @ApiOperation("获取${comments}详情")
+    public ResultInfo get(Integer id) {
+        return ResultInfo.success(${classname}Service.get${className}(id));
+    }
+
+    /**
+     * 根据条件查询列表，带分页功能.
+     *
+     * @param ${classname}QueryDTO 查询参数
+     * @return 分页/列表
+     */
+    @ApiOperation("获取${comments}列表")
+    public ResultInfo getList(${className}QueryDTO ${classname}QueryDTO) {
+        return ResultInfo.success(${classname}Service.queryList(${classname}QueryDTO));
+    }
+
+    /**
+     * 新增${comments}.
+     *
+     * @param ${classname}DTO 新增数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @ApiOperation("新增${comments}")
+    public ResultInfo add(${className}DTO ${classname}DTO) {
+        return ResultInfo.success(${classname}Service.add${className}(${classname}DTO));
+    }
+
+    /**
+     * 修改${comments}.
+     *
+     * @param ${classname}DTO 修改数据
+     * @return 成功返回数据/失败返回异常
+     */
+    @ApiOperation("修改${comments}")
+    public ResultInfo update(Integer id, ${className}DTO ${classname}DTO) {
+        return ResultInfo.success(${classname}Service.update${className}(id, ${classname}DTO));
+    }
+}
